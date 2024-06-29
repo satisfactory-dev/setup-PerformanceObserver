@@ -95,54 +95,54 @@ void describe('Setup', () => {
 						log_on_observe,
 					});
 
-			assert.strictEqual(
-				instance.last_total_lines,
+					assert.strictEqual(
+						instance.last_total_lines,
 						0,
 						'should have zero lines on instantiation'
-			);
+					);
 
-			instance.obs.observe({entryTypes: ['measure'], buffered: true});
+					instance.obs.observe({entryTypes: ['measure'], buffered: true});
 
-			assert.strictEqual(
-				instance.last_total_lines,
+					assert.strictEqual(
+						instance.last_total_lines,
 						0,
 						'should have zero lines after starting observation'
-			);
+					);
 
-			call_perf();
+					call_perf();
 
-			await delay();
+					await delay();
 
-			assert.strictEqual(
-				instance.last_total_lines,
+					assert.strictEqual(
+						instance.last_total_lines,
 						log_on_observe ? 4 : 0 ,
 						`should have ${
 							log_on_observe ? 4 : 0
 						} when log_on_observe is ${
 							log_on_observe ? 'true' : 'false'
 						}`
-			);
+					);
 
-			instance.log();
+					instance.log();
 
-			assert.strictEqual(
-				instance.last_total_lines,
-				4
-			);
+					assert.strictEqual(
+						instance.last_total_lines,
+						4
+					);
 
-			await delay();
+					await delay();
 
-			instance.log();
+					instance.log();
 
-			await delay();
+					await delay();
 
-			instance.log();
+					instance.log();
 
-			assert.strictEqual(
-				instance.last_total_lines,
-				4
-			);
-		})
+					assert.strictEqual(
+						instance.last_total_lines,
+						4
+					);
+				})
 		}
 	})
 })
