@@ -28,3 +28,8 @@ tests: build
 .PHONY: coverage
 coverage: build
 	@./node_modules/.bin/c8 ./node_modules/.bin/ts-node ./tests.ts
+
+npm-prep: tests
+	@echo 'building from ./tsconfig.app-npm.json'
+	@NODE_OPTIONS='' ./node_modules/.bin/tsc --project ./tsconfig.app-npm.json
+	@npm publish --dry-run
