@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "name": "@signpostmarv/setup-performance-observer",
+  "description": "assistance in setting up PerformanceObserver",
+  "license": "Apache-2.0",
+  "keywords": [
+    "PerformanceObserver"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satisfactory-dev/setup-PerformanceObserver.git"
+  },
+  "funding": "https://github.com/satisfactory-dev/setup-PerformanceObserver?sponsor=1",
+  "exports": "./src/Setup.js",
+  "types": "./src/Setup.d.ts",
+  "devDependencies": {
+    "@types/eslint": "^8.56.10",
+    "@types/node": "^20.14.9",
+    "c8": "^10.1.2",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.2",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.5.2",
+    "typescript-eslint": "^7.14.1"
+  }
+}
