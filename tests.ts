@@ -13,7 +13,7 @@ let already_stopped = false;
 
 run({
 	files: [
-		`${__dirname}/tests/src/setup.spec.ts`,
+		`${__dirname}/tests/src/Setup.spec.ts`,
 	],
 	concurrency: true,
 	signal: ac.signal,
