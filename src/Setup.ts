@@ -3,6 +3,7 @@ import * as readline from 'node:readline';
 export type constructor_args = {
 	clear_lines: boolean,
 	tweak_order_by_prefix: string[],
+	log_on_observe: boolean,
 };
 
 export default class Setup
@@ -10,6 +11,8 @@ export default class Setup
 	#last_total_lines:number = 0;
 
 	readonly clear_lines:boolean;
+
+	readonly log_on_observe:boolean;
 
 	readonly measured_totals: {[key: string]: [number, number]} = {};
 
@@ -21,10 +24,12 @@ export default class Setup
 		{
 			clear_lines = true,
 			tweak_order_by_prefix = [],
+			log_on_observe = true,
 		}: Partial<constructor_args> = {}
 	) {
 		this.clear_lines = clear_lines;
 		this.tweak_order_by_prefix = tweak_order_by_prefix;
+		this.log_on_observe = log_on_observe;
 
 		this.obs = new PerformanceObserver((list) => {
 			for (const entry of list.getEntries()) {
@@ -33,6 +38,10 @@ export default class Setup
 				}
 				this.measured_totals[entry.name][0] += entry.duration;
 				this.measured_totals[entry.name][1] += 1;
+			}
+
+			if (this.log_on_observe) {
+				this.log();
 			}
 		})
 	}

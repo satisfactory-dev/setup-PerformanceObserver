@@ -21,9 +21,17 @@ void describe('Setup', () => {
 		}));
 	}
 
+	function reset_between_tests() {
+		performance.clearMeasures();
+		performance.clearMarks();
+		performance.clearResourceTimings();
+	}
+
 	void describe('results', () => {
 		void it('behaves with ordering', async () => {
+			reset_between_tests();
 			const instance = new setup_PerformanceObserver({
+				log_on_observe: false,
 				clear_lines: false,
 				tweak_order_by_prefix: [
 					'foo',
@@ -47,7 +55,9 @@ void describe('Setup', () => {
 			)
 		})
 		void it('behaves without ordering', async () => {
+			reset_between_tests();
 			const instance = new setup_PerformanceObserver({
+				log_on_observe: false,
 				clear_lines: false,
 			});
 			instance.obs.observe({entryTypes: ['measure'], buffered: true});
@@ -69,19 +79,34 @@ void describe('Setup', () => {
 	})
 
 	void describe('last_total_lines', () => {
-		void it('behaves', async() => {
-			const instance = new setup_PerformanceObserver();
+		for (const log_on_observe of [
+			true,
+			false,
+		]) {
+			void it(
+				`behaves with log_on_observe===${
+					log_on_observe
+						? 'true'
+						: 'false'
+				}`,
+				async() => {
+					reset_between_tests();
+					const instance = new setup_PerformanceObserver({
+						log_on_observe,
+					});
 
 			assert.strictEqual(
 				instance.last_total_lines,
-				0
+						0,
+						'should have zero lines on instantiation'
 			);
 
 			instance.obs.observe({entryTypes: ['measure'], buffered: true});
 
 			assert.strictEqual(
 				instance.last_total_lines,
-				0
+						0,
+						'should have zero lines after starting observation'
 			);
 
 			call_perf();
@@ -90,7 +115,12 @@ void describe('Setup', () => {
 
 			assert.strictEqual(
 				instance.last_total_lines,
-				0
+						log_on_observe ? 4 : 0 ,
+						`should have ${
+							log_on_observe ? 4 : 0
+						} when log_on_observe is ${
+							log_on_observe ? 'true' : 'false'
+						}`
 			);
 
 			instance.log();
@@ -113,5 +143,6 @@ void describe('Setup', () => {
 				4
 			);
 		})
+		}
 	})
 })
