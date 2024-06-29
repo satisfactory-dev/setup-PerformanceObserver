@@ -101,7 +101,10 @@ void describe('Setup', () => {
 						'should have zero lines on instantiation'
 					);
 
-					instance.obs.observe({entryTypes: ['measure'], buffered: true});
+					instance.obs.observe({
+						entryTypes: ['measure'],
+						buffered: true,
+					});
 
 					assert.strictEqual(
 						instance.last_total_lines,
