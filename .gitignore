@@ -1,6 +1,6 @@
 /node_modules/
-/src/**/*.js
-/src/**/*.d.ts
-/src/**/*.map
+/**/*.js
+/**/*.d.ts
+/**/*.js.map
 /.eslintcache
 /coverage/
