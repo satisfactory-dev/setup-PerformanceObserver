@@ -51,7 +51,7 @@ void describe('Setup', () => {
 					'bar',
 					'baz',
 					'bag',
-				]
+				],
 			)
 		})
 		void it('behaves without ordering', async () => {
@@ -73,7 +73,7 @@ void describe('Setup', () => {
 					'bar',
 					'foo',
 					'bag',
-				]
+				],
 			)
 		})
 	})
@@ -98,7 +98,7 @@ void describe('Setup', () => {
 					assert.strictEqual(
 						instance.last_total_lines,
 						0,
-						'should have zero lines on instantiation'
+						'should have zero lines on instantiation',
 					);
 
 					instance.obs.observe({
@@ -109,7 +109,7 @@ void describe('Setup', () => {
 					assert.strictEqual(
 						instance.last_total_lines,
 						0,
-						'should have zero lines after starting observation'
+						'should have zero lines after starting observation',
 					);
 
 					call_perf();
@@ -123,14 +123,14 @@ void describe('Setup', () => {
 							log_on_observe ? 4 : 0
 						} when log_on_observe is ${
 							log_on_observe ? 'true' : 'false'
-						}`
+						}`,
 					);
 
 					instance.log();
 
 					assert.strictEqual(
 						instance.last_total_lines,
-						4
+						4,
 					);
 
 					await delay();
@@ -143,7 +143,7 @@ void describe('Setup', () => {
 
 					assert.strictEqual(
 						instance.last_total_lines,
-						4
+						4,
 					);
 				})
 		}

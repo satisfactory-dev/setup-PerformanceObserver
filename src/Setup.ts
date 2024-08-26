@@ -25,7 +25,7 @@ export default class Setup
 			clear_lines = true,
 			tweak_order_by_prefix = [],
 			log_on_observe = true,
-		}: Partial<constructor_args> = {}
+		}: Partial<constructor_args> = {},
 	) {
 		this.clear_lines = clear_lines;
 		this.tweak_order_by_prefix = tweak_order_by_prefix;
@@ -54,7 +54,7 @@ export default class Setup
 	get results()
 	{
 		const results = Object.entries(this.measured_totals).map((
-			e
+			e,
 		): [string, {[key: string]: string|number}] => {
 			return [
 				e[0],
@@ -69,10 +69,10 @@ export default class Setup
 		return Object.fromEntries(
 			results.sort((a, b) => {
 				const a_prefix = this.tweak_order_by_prefix.find(
-					maybe => a[0].startsWith(maybe)
+					maybe => a[0].startsWith(maybe),
 				);
 				const b_prefix = this.tweak_order_by_prefix.find(
-					maybe => b[0].startsWith(maybe)
+					maybe => b[0].startsWith(maybe),
 				);
 
 				if (a_prefix || b_prefix) {
@@ -84,15 +84,15 @@ export default class Setup
 
 					return (
 						this.tweak_order_by_prefix.indexOf(
-							a_prefix
+							a_prefix,
 						) - this.tweak_order_by_prefix.indexOf(
-							b_prefix
+							b_prefix,
 						)
 					);
 				}
 
 				return 0; // leave in order they came in
-			})
+			}),
 		)
 	}
 
@@ -106,7 +106,7 @@ export default class Setup
 			readline.moveCursor(
 				process.stdout,
 				0,
-				0 - (this.#last_total_lines + 4)
+				0 - (this.#last_total_lines + 4),
 			);
 			readline.clearLine(process.stdout, 1);
 		}
